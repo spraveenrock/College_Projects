@@ -1,0 +1,49 @@
+#include<stdio.h>
+#include<stdlib.h>
+struct node{
+    int data;
+    struct node* next;
+    struct node* prev;
+};
+int main()
+{
+    int num,i,number,len,newnum,newpos;
+    struct node* head,*temp;
+    head=(struct node*)malloc(sizeof(struct node));
+    temp=malloc(sizeof(struct node));
+    temp=head;
+    printf("Deleting at specific postion\n");
+    printf("Enter the size in Double linked list: ");
+    scanf("%d",&num);
+    temp->prev=NULL;
+    for(i=0;i<num;i++)
+    {
+        printf("element %d: ",i);
+        scanf("%d",&number);
+        temp->data=number;
+        if(i!=num-1)
+        { 
+            temp->next=malloc(sizeof(struct node));
+            temp->next->prev=temp;
+            temp=temp->next;
+        }
+    }
+    temp->next=NULL;
+    printf("Enter the Postion to delete: ");
+    scanf("%d",&newpos);
+    temp=head;
+    
+    for(i=0;i<newpos-1;i++)
+    {
+        temp=temp->next;
+    }
+     temp->next=temp->next->next;
+     temp->next->prev=temp;
+    while(head!=NULL)
+    {
+        printf("%d->",head->data);
+        head=head->next;
+    }
+    printf("NULL\n");
+    return 0;
+}

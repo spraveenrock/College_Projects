@@ -1,0 +1,97 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+#define MAX_SIZE 100
+
+int stack[MAX_SIZE];
+int top = -1;
+
+void push(int value);
+int pop();
+void display();
+void get_size(int* size);
+void get_value(int* value);
+
+int main()
+{
+    int choice, size, value;
+    while (1)
+     {
+        printf("\n1. Push\n2. Pop\n3. Display\n4. Exit\n");
+        printf("Enter your choice: ");
+        scanf("%d", &choice);
+
+        switch (choice) {
+            case 1:
+                get_value(&value);
+                push(value);
+                break;
+            case 2:
+                if (top == -1) {
+                    printf("Stack is empty\n");
+                } else {
+                    printf("Popped value is %d\n", pop());
+                }
+                break;
+            case 3:
+                display();
+                break;
+            case 4:
+                exit(0);
+            default:
+                printf("Invalid choice\n");
+        }
+    } 
+
+    return 0;
+}
+
+void push(int value)
+{
+    if (top == MAX_SIZE - 1) {
+        printf("Stack overflow\n");
+        return;
+    }
+    top++;
+    stack[top] = value;
+}
+
+int pop()
+{
+    if (top == -1) {
+        printf("Stack underflow\n");
+        return -1;
+    }
+    int value = stack[top];
+    top--;
+    return value;
+}
+
+void display()
+{
+    if (top == -1) {
+        printf("Stack is empty\n");
+        return;
+    }
+    printf("Stack contents are: ");
+    for (int i = top; i >= 0; i--) {
+        printf("%d ", stack[i]);
+    }
+    printf("\n");
+}
+
+void get_size(int* size)
+{
+    printf("Enter size of stack (<= %d): ", MAX_SIZE);
+    scanf("%d", size);
+    if (*size > MAX_SIZE) {
+        printf("Size too large. Using default size of %d\n", MAX_SIZE);
+        *size = MAX_SIZE;
+    }
+}
+
+void get_value(int* value)
+{
+    printf("Enter value to push onto stack: ");
+    scanf("%d", value);
+}

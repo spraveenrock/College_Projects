@@ -1,0 +1,43 @@
+#include<stdio.h>
+#include<stdlib.h>
+struct Node
+{
+    int data;
+    struct Node* prev;
+    struct Node* next;
+};
+int main()
+{
+    struct Node* head,*temp;
+    temp=malloc(sizeof(struct Node));
+    head=temp;
+    int i,size;
+    temp->prev=NULL;
+    printf("Enter the size in circular linked list: ");
+    scanf("%d",&size);
+    for(i=0;i<size;i++)
+    {
+        printf("element %d: ",i);
+        scanf("%d",&temp->data);
+        if(i<size-1)
+        {
+            temp->next=malloc(sizeof(struct Node));
+            temp->next->prev=temp;
+            temp=temp->next;
+        }
+        else
+        {
+            temp->next=head;
+        }
+    }
+    temp=head;
+    printf("%d->",temp->data);
+    temp=temp->next;
+    while(head!=temp)
+    {
+        printf("%d->",temp->data);
+        temp=temp->next;
+    }
+    printf("NULL");
+    return 0;
+}

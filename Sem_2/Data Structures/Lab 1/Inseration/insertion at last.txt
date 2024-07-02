@@ -1,0 +1,25 @@
+//Inseration at Last
+#include<stdio.h> 
+
+int main() 
+{ 
+    int n, i, values; 
+    printf("Enter Number of Array Elements: "); 
+    scanf("%d",&n);
+    int array[n];
+    for(i=0; i<n; i++) 
+    {
+    scanf("%d", &array[i]); 
+    }
+    n++;
+    printf("\nEnter Element to Insert: "); 
+    scanf("%d", &values); 
+    array[i] = values; 
+    printf("\nThe After adding the last element:\n"); 
+    for(i=0; i<n; i++) 
+    {
+        printf("%d ", array[i]); 
+    }
+ return 0; 
+
+} 

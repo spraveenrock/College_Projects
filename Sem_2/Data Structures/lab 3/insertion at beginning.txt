@@ -1,0 +1,53 @@
+//insertion at beginning
+
+#include<stdio.h>
+#include<stdlib.h>
+struct node{
+    int data;
+    struct node* next; 
+};
+int main()
+{
+    int num,i,number,len;
+    struct node* head;
+    struct node* temp;
+    head=(struct node*)malloc(sizeof(struct node));
+    temp=malloc(sizeof(struct node));
+    temp=head;
+    printf("Creation of linked list\n Enter the size in linked list: \n");
+    scanf("%d",&num);
+    for(i=0;i<num;i++)
+    {
+        printf("element %d: ",i);
+        scanf("%d",&number);
+        temp->data=number;
+        if(i<num-1)
+        { 
+            temp->next=malloc(sizeof(struct node));  
+            temp=temp->next;
+        }
+    }
+    temp->next=NULL;
+    temp = head;
+    while(temp!=NULL)
+    {
+        printf("%d->",temp->data);
+        temp=temp->next;
+    }
+    int data;
+    printf("Enter element for inserting at the beginning: ");
+    scanf("%d", &data);
+    struct node* temp2 = malloc(sizeof(struct node));
+    temp2->data = data;
+    temp2->next = head;
+    head = temp2;
+    struct node* temp1 = head; 
+    while(temp1!=NULL)
+    {
+        printf("%d->",temp1->data);
+        temp1=temp1->next;
+    }
+    
+    
+    return 0;
+}

@@ -1,0 +1,53 @@
+#include<stdio.h>
+#include<stdlib.h>
+struct node{
+    int data;
+    struct node* next; 
+};
+int main()
+{
+    int num,i,number,len,number1,pos;
+    struct node* head;
+    struct node* temp;
+    struct node* temp1;
+    struct node* temp2;
+    head=(struct node*)malloc(sizeof(struct node));
+    temp=malloc(sizeof(struct node));
+    temp=head;
+    printf("Enter the size in linked list: \n");
+    scanf("%d",&num);
+    for(i=0;i<num;i++)
+    {
+        printf("element %d: ",i+1);
+        scanf("%d",&number);
+        temp->data=number;
+        if(i!=num-1)
+        { 
+            temp->next=malloc(sizeof(struct node));  
+            temp=temp->next;
+        }
+    }
+    temp->next=NULL;
+    temp1=malloc(sizeof(struct node));
+    printf("Enter the elemnet to add: ");
+    scanf("%d",&number1);
+    printf("Enter the position to add: ");
+    scanf("%d",&pos);
+    temp1->data=number1;
+    temp=head;
+    for(i=0;i<=pos-3;i++)
+    {
+        temp=temp->next;
+    }
+    temp2=temp;
+    temp=temp->next;
+    temp2->next=temp1;
+    temp1->next=temp;
+    
+    while(head!=NULL)
+    {
+        printf("%d->",head->data);
+        head=head->next;
+    }
+    return 0;
+}
